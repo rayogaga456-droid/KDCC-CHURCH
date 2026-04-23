@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/KDCC-CHURCH/static/css/main.822d4516.css",
+    "main.js": "/KDCC-CHURCH/static/js/main.49efff3b.js",
+    "static/js/453.825386d9.chunk.js": "/KDCC-CHURCH/static/js/453.825386d9.chunk.js",
+    "static/media/logo.png": "/KDCC-CHURCH/static/media/logo.9b6a1593d72fb9f17dfc.png",
+    "index.html": "/KDCC-CHURCH/index.html",
+    "main.822d4516.css.map": "/KDCC-CHURCH/static/css/main.822d4516.css.map",
+    "main.49efff3b.js.map": "/KDCC-CHURCH/static/js/main.49efff3b.js.map",
+    "453.825386d9.chunk.js.map": "/KDCC-CHURCH/static/js/453.825386d9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.822d4516.css",
+    "static/js/main.49efff3b.js"
+  ]
+}
