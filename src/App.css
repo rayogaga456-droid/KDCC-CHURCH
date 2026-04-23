@@ -1,38 +1,92 @@
-.App {
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.auth-wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+/* LEFT IMAGE SIDE */
+.auth-image {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  transition: 0.5s ease;
+  position: relative;
+}
+
+/* LOGIN IMAGE */
+.auth-image.login {
+  background-image: url("https://images.unsplash.com/photo-1507692049790-de58290a4334");
+}
+
+/* SIGNUP IMAGE */
+.auth-image.signup {
+  background-image: url("https://images.unsplash.com/photo-1529070538774-1843cb3265df");
+}
+
+/* OVERLAY */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: gold;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* LOGO */
+.logo {
+  width: 120px;
+  margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* FORM SIDE */
+.auth-form {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 50px;
+  background: #0b0b0f;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.auth-form h2 {
+  margin-bottom: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.auth-form input {
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.auth-form button {
+  padding: 12px;
+  background: gold;
+  border: none;
+  border-radius: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.auth-form button:hover {
+  transform: scale(1.05);
+}
+
+.switch {
+  margin-top: 15px;
+  cursor: pointer;
+  color: gold;
 }
