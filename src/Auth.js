@@ -11,7 +11,7 @@ const family = "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=8
 function Auth() {
   const navigate = useNavigate();
 
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const [errors, setErrors] = useState({});

@@ -1,15 +1,15 @@
 import "./Home.css";
 
 const sermons = [
-  { title: "Walking in Divine Purpose", pastor: "Dr. David O. Ogaga", date: "Apr 20, 2026", tag: "Faith" },
-  { title: "The Power of Prayer", pastor: "Pastor Maxwell E. Ogaga", date: "Apr 13, 2026", tag: "Prayer" },
-  { title: "Kingdom Diplomats", pastor: "Dr. David O. Ogaga", date: "Apr 6, 2026", tag: "Identity" },
+  { title: "Who Is Jesus", pastor: "Dr. Maxwell E. Ogaga", date: "Apr 20, 2026", tag: "Faith" },
+  { title: "The Power of Prayer", pastor: " Maxwell E. Ogaga", date: "Apr 13, 2026", tag: "Prayer" },
+  { title: "Don't Drop The Ball On Your Watch", pastor: "Mary L. Ogaga", date: "Apr 6, 2026", tag: "Dilligence" },
 ];
 
 const events = [
-  { title: "Sunday Service", date: "Every Sunday", time: "8:00 AM & 10:30 AM", branch: "Both Branches" },
-  { title: "Mid-Week Bible Study", date: "Every Wednesday", time: "5:30 PM", branch: "Both Branches" },
-  { title: "Youth Conference 2026", date: "May 10, 2026", time: "9:00 AM", branch: "Port Harcourt" },
+  { title: "Sunday Service", date: "Every Sunday", time: "8:00 AM & 10:00 AM", branch: "Both Branches" },
+  { title: "Mid-Week Bible Study", date: "Every Wednesday", time: "6:00 PM", branch: "Bonny Island" },
+  { title: "Mid-week Bible study", date: "Every Thursdaay", time: "6:00 PM", branch: "Port Harcourt" },
 ];
 
 function Home() {
@@ -47,7 +47,7 @@ function Home() {
       <section className="stats-strip">
         <div className="stat"><span>2</span><p>Branches</p></div>
         <div className="stat"><span>10+</span><p>Years of Ministry</p></div>
-        <div className="stat"><span>500+</span><p>Members</p></div>
+        <div className="stat"><span>200+</span><p>Members</p></div>
         <div className="stat"><span>Weekly</span><p>Bible Study</p></div>
       </section>
 
