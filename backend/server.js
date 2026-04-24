@@ -58,5 +58,10 @@ app.get("/prayer/:userId", async (req, res) => {
   res.send(prayers);
 });
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+app.listen(5000, "0.0.0.0", () => {
+  console.log("Server running on port 5000");
+});
+
+const cors = require("cors");
+app.use(cors());
 
