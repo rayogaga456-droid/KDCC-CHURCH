@@ -1,9 +1,9 @@
 import "./Home.css";
 
 const sermons = [
-  { title: "Who Is Jesus", pastor: "Dr. Maxwell E. Ogaga", date: "Apr 20, 2026", tag: "Faith" },
-  { title: "The Power of Prayer", pastor: " Maxwell E. Ogaga", date: "Apr 13, 2026", tag: "Prayer" },
-  { title: "Don't Drop The Ball On Your Watch", pastor: "Mary L. Ogaga", date: "Apr 6, 2026", tag: "Dilligence" },
+  { title: "Who Is Jesus", pastor: " Pastor Maxwell E. Ogaga", date: "Apr 20, 2026", tag: "Faith" },
+  { title: "The Power of Prayer", pastor: "Pastor Maxwell E. Ogaga", date: "Apr 13, 2026", tag: "Prayer" },
+  { title: "Don't Drop The Ball On Your Watch", pastor: " Pastor Mary L. Ogaga", date: "Apr 6, 2026", tag: "Dilligence" },
 ];
 
 const events = [
@@ -34,7 +34,7 @@ function Home() {
         <div className="hero-content">
           <p className="hero-tag">Kingdom Development Christian Centre</p>
           <h1>Raising Kingdom<br /><span className="hero-accent">Diplomats</span></h1>
-          <p className="hero-sub">Welcome to KDCC Bonny & Port Harcourt — a community built on faith, love, and purpose.</p>
+          <p className="hero-sub">Welcome to KDCC Bonny & Port Harcourt — a community built on Faith, Love, and Family.</p>
           <div className="hero-btns">
             <a href="#sermons" className="btn-gold">Watch Sermons</a>
             <a href="#prayer" className="btn-outline">Send a Prayer</a>
