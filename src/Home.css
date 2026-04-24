@@ -14,12 +14,15 @@
 /* HERO */
 .hero {
   height: 90vh;
-  background: url("https://images.unsplash.com/photo-1507692049790-de58290a4334") center/cover;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url("https://images.unsplash.com/photo-1507692049790-de58290a4334?w=1200") center/cover;
+  background-color: #1a1a2e; /* fallback if image fails */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
+  text-align: center;
 }
 
 /* MOBILE */
@@ -29,7 +32,15 @@
     align-items: center;
   }
 
-  .hero h1 {
-    font-size: 24px;
-  }
+}
+.hero h1 {
+  font-size: 48px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero p {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 10px;
 }

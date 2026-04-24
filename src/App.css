@@ -6,10 +6,12 @@
 
 .bg {
   height: 100vh;
- background: url("https://images.unsplash.com/photo-1507692049790-de58290a4334") center/cover no-repeat;
+  background: url("https://images.unsplash.com/photo-1507692049790-de58290a4334?w=1200") center/cover no-repeat;
+  background-color: #1a1a2e; /* fallback */
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative; /* ADD THIS - fixes the ::before overlay */
 }
 
 .bg::before {
