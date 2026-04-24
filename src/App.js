@@ -1,67 +1,50 @@
 import React, { useState } from "react";
 import "./App.css";
 import logo from "./assets/logo.png";
+import family from "./assets/family.jpg";
+import bible from "./assets/bible.jpg";
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: ""
-  });
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const register = async () => {
-    await fetch("http://localhost:5000/register", {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify(form)
-    });
-    alert("Registered ✅");
-  };
-
-  const login = async () => {
-    await fetch("http://localhost:5000/login", {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify(form)
-    });
-    alert("Logged in ✅");
-  };
 
   return (
-    <div className="auth-wrapper">
+    <div className="bg">
 
-      {/* LEFT SIDE IMAGE */}
-      <div className={`auth-image ${isLogin ? "login" : "signup"}`}>
-        <div className="overlay">
-          <img src={logo} alt="KDCC Logo" className="logo"/>
-          <h1>KDCC</h1>
-          <p>Raising Kingdom Diplomats</p>
+      <div className="glass-card">
+
+        {/* LEFT IMAGE */}
+        <div className="image-side">
+          <img
+            src={isLogin ? bible : family}
+            alt="visual"
+            className="side-img"
+          />
         </div>
-      </div>
 
-      {/* RIGHT SIDE FORM */}
-      <div className="auth-form">
-        <h2>{isLogin ? "Welcome Back" : "Join KDCC"}</h2>
+        {/* RIGHT FORM */}
+        <div className="form-side">
 
-        {!isLogin && (
-          <input name="name" placeholder="Full Name" onChange={handleChange}/>
-        )}
+          <div className="logo-row">
+            <img src={logo} alt="logo" />
+            <span>KDCC</span>
+          </div>
 
-        <input name="email" placeholder="Email" onChange={handleChange}/>
-        <input name="password" type="password" placeholder="Password" onChange={handleChange}/>
+          <h2>Welcome Back 👋</h2>
 
-        <button onClick={isLogin ? login : register}>
-          {isLogin ? "Login" : "Sign Up"}
-        </button>
+          {!isLogin && <input placeholder="Full Name" />}
+          <input placeholder="Email" />
+          <input type="password" placeholder="Password" />
 
-        <p onClick={() => setIsLogin(!isLogin)} className="switch">
-          {isLogin ? "Create account" : "Already have an account?"}
-        </p>
+          <button>
+            {isLogin ? "Login" : "Sign Up"}
+          </button>
+
+          <p onClick={() => setIsLogin(!isLogin)}>
+            {isLogin ? "Create account" : "Already have an account?"}
+          </p>
+
+        </div>
+
       </div>
 
     </div>
