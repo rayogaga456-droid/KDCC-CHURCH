@@ -4,7 +4,7 @@ import Home from "./Home";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/KDCC-CHURCH">
       <Routes>
         <Route path="/" element={<Auth />} />
         <Route path="/home" element={<Home />} />

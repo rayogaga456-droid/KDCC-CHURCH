@@ -1,6 +1,4 @@
 {
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist",
   "name": "frontend",
   "version": "0.1.0",
   "homepage": "https://rayogaga456-droid.github.io/KDCC-CHURCH/",
