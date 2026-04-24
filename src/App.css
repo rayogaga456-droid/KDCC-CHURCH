@@ -81,23 +81,35 @@
   font-family: 'DM Sans', sans-serif;
 }
 
+/* LOGO UPGRADE (BIGGER + STRONGER) */
 .logo-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 25px;
+  gap: 14px; /* slightly more spacing */
+  margin-bottom: 28px;
 }
 
 .logo-row img {
-  width: 38px;
-  border-radius: 8px;
+  width: 72px;   /* ⬅️ was 38 → now BIG */
+  height: 72px;
+  object-fit: cover;
+  border-radius: 14px;
 }
 
 .logo-row span {
   font-family: 'Playfair Display', serif;
-  font-size: 20px;
+  font-size: 30px; /* ⬅️ bigger text */
   color: #d4a017;
-  letter-spacing: 3px;
+  letter-spacing: 5px;
+}
+
+.logo-row img {
+  width: 90px;
+  height: 90px;
+}
+
+.logo-row span {
+  font-size: 34px;
 }
 
 .form-side h2 {
@@ -230,4 +242,48 @@
   .form-side {
     padding: 30px 25px;
   }
+}
+/* LOGO UPGRADE */
+.logo-row img {
+  width: 52px; /* was 38px */
+  border-radius: 10px;
+}
+
+.logo-row span {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; /* was 20px */
+  color: #d4a017;
+  letter-spacing: 4px;
+}
+
+
+/* PASSWORD FIELD FIX */
+.password-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-box input {
+  width: 100%;
+  padding-right: 60px; /* space for button */
+}
+
+/* SHOW BUTTON INSIDE INPUT */
+.toggle-pass {
+  position: absolute;
+  right: 14px;
+  font-size: 13px;
+  color: #d4a017;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.2s;
+}
+
+.toggle-pass:hover {
+  opacity: 0.7;
+}
+
+.password-box input:focus {
+  box-shadow: 0 0 0 1px #d4a017, 0 0 12px rgba(212,160,23,0.3);
 }

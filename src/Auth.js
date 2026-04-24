@@ -3,28 +3,41 @@ import { useNavigate } from "react-router-dom";
 import "./App.css";
 import logo from "./assets/logo.png";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 const bible = "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=800";
 const family = "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800";
 
 function Auth() {
   const navigate = useNavigate();
+
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
+
   const [errors, setErrors] = useState({});
   const [serverError, setServerError] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
 
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
+
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    // Clear error for that field as user types
+
     if (errors[e.target.name]) {
       setErrors({ ...errors, [e.target.name]: "" });
     }
+
     setServerError("");
+    setSuccessMsg("");
   };
 
-  // ---- Validation ----
+  // ✅ VALIDATION
   const validate = () => {
     const newErrors = {};
 
@@ -35,61 +48,76 @@ function Auth() {
     if (!form.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      newErrors.email = "Enter a valid email address";
+      newErrors.email = "Enter a valid email";
     }
 
     if (!form.password) {
       newErrors.password = "Password is required";
     } else if (form.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
+      newErrors.password = "Min 6 characters";
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  // ---- Login ----
+  // ✅ SAVE AUTH
+  const saveAuth = (data) => {
+    if (data.token) {
+      localStorage.setItem("token", data.token);
+    }
+    if (data.user) {
+      localStorage.setItem("user", JSON.stringify(data.user));
+    }
+  };
+
+  // 🔐 LOGIN
   const login = async () => {
     if (!validate()) return;
+
     setLoading(true);
     setServerError("");
+    setSuccessMsg("");
 
     try {
-      const res = await fetch("http://localhost:5000/login", {
+      const res = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: form.email, password: form.password }),
+        body: JSON.stringify({
+          email: form.email,
+          password: form.password,
+        }),
       });
 
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        if (res.status === 404 || data.message?.toLowerCase().includes("not found") || data.message?.toLowerCase().includes("no account")) {
-          setServerError("No account found with this email. Please sign up first.");
-        } else if (res.status === 401 || data.message?.toLowerCase().includes("password") || data.message?.toLowerCase().includes("invalid")) {
-          setServerError("Incorrect email or password. Please try again.");
-        } else {
-          setServerError(data.message || "Login failed. Please try again.");
-        }
+        setServerError(data.message || "Login failed");
         return;
       }
 
+      // ✅ FIX: store auth
+      saveAuth(data);
+
       navigate("/home");
+
     } catch (err) {
-      setServerError("Cannot connect to server. Please try again later.");
+      setServerError("Cannot connect to server.");
     } finally {
       setLoading(false);
     }
   };
 
-  // ---- Register ----
+  // 📝 REGISTER
   const register = async () => {
     if (!validate()) return;
+
     setLoading(true);
     setServerError("");
+    setSuccessMsg("");
 
     try {
-      const res = await fetch("http://localhost:5000/register", {
+      const res = await fetch(`${API_URL}/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -98,21 +126,26 @@ function Auth() {
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        if (res.status === 409 || data.message?.toLowerCase().includes("exist") || data.message?.toLowerCase().includes("already")) {
-          setServerError("An account with this email already exists. Please log in.");
+        if (
+          res.status === 409 ||
+          data.message?.toLowerCase().includes("exist")
+        ) {
+          setServerError("Email already exists. Try logging in.");
         } else {
-          setServerError(data.message || "Registration failed. Please try again.");
+          setServerError(data.message || "Registration failed");
         }
         return;
       }
 
-      setServerError("");
-      setIsLogin(true);
-      setForm({ name: "", email: "", password: "" });
-      // Show a brief success note
-      setServerError("✅ Account created! You can now log in.");
+      // ✅ AUTO LOGIN AFTER SIGNUP (FIXES YOUR LOOP)
+      saveAuth(data);
+
+      setSuccessMsg("Account created successfully 🎉");
+
+      navigate("/home");
+
     } catch (err) {
-      setServerError("Cannot connect to server. Please try again later.");
+      setServerError("Cannot connect to server.");
     } finally {
       setLoading(false);
     }
@@ -122,6 +155,7 @@ function Auth() {
     setIsLogin(!isLogin);
     setErrors({});
     setServerError("");
+    setSuccessMsg("");
     setForm({ name: "", email: "", password: "" });
   };
 
@@ -150,16 +184,21 @@ function Auth() {
           </div>
 
           <h2>{isLogin ? "Welcome Back 👋" : "Join KDCC"}</h2>
-          <p className="form-sub">{isLogin ? "Sign in to your account" : "Create your account today"}</p>
+          <p className="form-sub">
+            {isLogin ? "Sign in to your account" : "Create your account"}
+          </p>
 
-          {/* SERVER ERROR / SUCCESS */}
+          {/* SERVER ERROR */}
           {serverError && (
-            <div className={`server-msg ${serverError.startsWith("✅") ? "success" : "error"}`}>
-              {serverError}
-            </div>
+            <div className="server-msg error">{serverError}</div>
           )}
 
-          {/* NAME FIELD */}
+          {/* SUCCESS */}
+          {successMsg && (
+            <div className="server-msg success">{successMsg}</div>
+          )}
+
+          {/* NAME */}
           {!isLogin && (
             <div className="field-group">
               <input
@@ -176,8 +215,10 @@ function Auth() {
           {/* EMAIL */}
           <div className="field-group">
             <input
+              type="email"
               name="email"
               placeholder="Email Address"
+              autoComplete="email"
               value={form.email}
               onChange={handleChange}
               className={errors.email ? "input-error" : ""}
@@ -187,21 +228,38 @@ function Auth() {
 
           {/* PASSWORD */}
           <div className="field-group">
-            <input
-              name="password"
-              type="password"
-              placeholder="Password"
-              value={form.password}
-              onChange={handleChange}
-              className={errors.password ? "input-error" : ""}
-            />
-            {errors.password && <span className="field-error">{errors.password}</span>}
+            <div className="password-box">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Password"
+                autoComplete="current-password"
+                value={form.password}
+                onChange={handleChange}
+                className={errors.password ? "input-error" : ""}
+              />
+              <span
+                className="toggle-pass"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </span>
+            </div>
+            {errors.password && (
+              <span className="field-error">{errors.password}</span>
+            )}
           </div>
 
-          <button onClick={isLogin ? login : register} disabled={loading} className="submit-btn">
+          {/* BUTTON */}
+          <button
+            onClick={isLogin ? login : register}
+            disabled={loading}
+            className="submit-btn"
+          >
             {loading ? "Please wait..." : isLogin ? "LOGIN" : "SIGN UP"}
           </button>
 
+          {/* SWITCH */}
           <p className="switch-text" onClick={switchMode}>
             {isLogin ? "Don't have an account? " : "Already have an account? "}
             <span>{isLogin ? "Sign Up" : "Log In"}</span>
