@@ -3,7 +3,7 @@
   "deploy": "gh-pages -d dist",
   "name": "frontend",
   "version": "0.1.0",
-  "homepage": "https://rayogaga456-droid.github.io/KDCC-CHURCH",
+  "homepage":"https://github.com/rayogaga456-droid/KDCC-CHURCH.git",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
@@ -20,7 +20,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -47,5 +47,4 @@
   "devDependencies": {
     "gh-pages": "^6.3.0"
   }
-  
 }
