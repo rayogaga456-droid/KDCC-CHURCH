@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./App.css";
 import logo from "./assets/logo.png";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_URL = import.meta.env.VITE_API_URL || "http://192.168.1.33:5000";
 
 const bible = "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=800";
 const family = "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800";
