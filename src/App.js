@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
 import logo from "./assets/logo.png";
-import family from "./assets/family.jpg";
-import bible from "./assets/bible.jpg";
+const family = "https://images.unsplash.com/photo-1511895426328-dc8714191300";
+const bible = "https://images.unsplash.com/photo-1504052434569-70ad5836ab65";
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
